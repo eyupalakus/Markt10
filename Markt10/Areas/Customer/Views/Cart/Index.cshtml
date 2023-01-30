@@ -1,0 +1,48 @@
+﻿@using Markt10.ViewModel.CartViewModel
+@model CartView
+<h1 class="Markt10" style="color:gray;padding-top:4%">My Cart</h1>
+<br />
+<div class="container" style="width:1140px;display:flex;justify-content:space-between">
+    <div class="left" style="width:870px">
+        @foreach (var item in Model.CartList)
+        {
+            <form method="post" class="border p-3 mt-4" style="width:850px;border-radius:15px;display:flex;justify-content:space-between">
+                <div class="form-group" style="width:150px">
+                    <img src="@item.ProductList.Photo" style="height:150px;width:150px" />
+                </div>
+                <div class="form-group" style="width:400px">
+                    <h5>@item.TrademarkList.Name</h5>
+                    @item.ProductList.Name
+                </div>
+                <div class="form-group" style="width:80px">
+                    <br>
+                    @item.ProductList.Price EUR
+                </div>
+                <div class="form-group ml-2" style="width:80px">
+                    <br>
+                    <p class="ml-2">@item.CartList.Count Piece</p>
+                </div>
+                <div class="form-group" style="width:50px">
+                    <br>
+                    <button type="submit" class="btn btn-danger" style="width:48px;height:30px;border-radius:5px" asp-route-id="@item.CartList.Id" asp-controller="Cart" asp-action="Delete"><i class="bi bi-trash"></i> Inspect</button>
+                </div>
+
+            </form>
+        }
+    </div>
+    <div class="rigth" style="width:260px">
+        <form method="post" class="border p-3 mt-4" style="width:250px; border-radius:5px">
+            <h5 style="color:gray;text-align:center">Cart Amount</h5>
+            <div style="text-align:center">
+                @foreach (var item in Model.CartList)
+                {
+                    <p>@item.CartList.Count x @item.ProductList.Name</p>
+                }
+            </div>
+            <h4 style="margin-left:75px">@Model.Total<i class="bi bi-currency-euro fs-5"></i></h4>
+            <button class="btn-success" style="border-radius:5px;margin-left:43px" type="submit"  asp-controller="Cart" asp-action="Order">Complete Order </button>
+        </form>
+    </div>
+</div>
+
+

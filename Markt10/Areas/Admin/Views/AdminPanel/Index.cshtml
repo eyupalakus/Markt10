@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Order>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Markt10</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Markt10.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body style="background-color:F7F0EB">
+    <header>
+        <div class="container bg-light mt-5" style="width:70%z">
+            <div class="title mt-5" style="text-align:center">
+                <h1>WELCOME ADMİN PANEL</h1>
+            </div>
+
+            <div class="deliver-buttton mt-5">
+                <form method="post">
+                    <button type="submit" style="border-radius:5px;background-color:orange;margin-left:86%;border:none;width:100px" asp-controller="AdminPanel"asp-action="Deliver"><i class="bi bi-check-circle"></i> Deliver</button>
+                </form>
+            </div>
+            <div class="table mt-1" style="width:90%;margin-left:5%">
+                <table class="table table-bordered table-striped" style="text-align:center">
+                    <thead style="color:794628">
+                        <tr>
+                            <td>
+                                Order Id
+                            </td>
+                            <td>
+                                Product Id
+                            </td>
+                            <td>
+                                Order Date
+                            </td>
+                            <td>
+                                Price
+                            </td>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model)
+                    {
+                        <tbody style="color:darkcyan">
+                            <tr>
+                                <td>
+                                    @item.Id
+                                </td>
+                                <td>
+                                    @item.ProductId
+                                </td>
+                                <td>
+                                    @item.OrderDate
+                                </td>
+                                <td>
+                                    @item.Count
+                                </td>
+                            </tr>
+                        </tbody>
+                    }
+
+                </table>
+            </div>
+        </div>
+    </header>
+</body>
+
+

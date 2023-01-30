@@ -1,0 +1,285 @@
+﻿@model HomeViewModel
+@using Markt10.ViewModel.HomeView
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="container" style="width:1130px;display:flex;justify-content:space-between">
+    <div class="sidebar mt-4" style="width:240px">
+        @using (Html.BeginForm())
+        {
+            <form class="border" style="border-radius:10px">
+            <h3>Filter</h3>
+            <div class="trademark">
+                <h5>Trademark</h5>
+                <hr>
+                @foreach (var item in Model.Trademark)
+                {
+                    <div>
+                        <input type="checkbox" id="@item.Name" name="trademark_filter" value="@item.Id">
+                        <label for="@item.Name">@item.Name</label>
+                    </div>
+                }
+                <button type="submit" class="btn btn-success p-0" style="width:100%;height:30px;border-radius:5px" asp-controller="Home" asp-action="Trademark">Filter</button>
+            </div>
+            <div class="color pt-3">
+                <h5>Color</h5>
+                <hr>
+                @foreach (var item in Model.Color)
+                {
+                    <div>
+                        <input type="checkbox" id="@item.Name" name="color_filter"value="@item.Id">
+                        <label for="@item.Name">@item.Name</label>
+                    </div>
+                }
+                <button type="submit" class="btn btn-success p-0" style="width:100%;height:30px;border-radius:5px" asp-controller="Home" asp-action="Color">Filter</button>
+            </div>
+            <div class="price pt-3">
+                <h5>Price Range</h5>
+                <input name="min" type="text" style="width:90px" placeholder="min price" />
+                <input name="max" type="text" style="width:90px" placeholder="max price" />
+                <button type="submit" class="btn btn-success p-0 mt-0" style="width:20%;height:30px;border-radius:5px" asp-controller="Home" asp-action="Price"><i class="bi bi-search"></i></button>
+            </div>
+            <br />
+        </form>
+        }
+        
+    </div>
+    <div class="page">
+        @if(Model.AccessoryView != null)
+        {
+             @foreach (var item in Model.AccessoryView)
+        {
+            <form class="border p-3 mt-4" style="border-radius:15px;width:850px;height:300px;">
+                <div class="form-group" style="display:flex;justify-content:space-between">
+                    <div class="left-side mt-3" style="width:220px">
+                        <img src="@item.ProductList.Photo" style="width:150px;height:120px" />
+                    </div>
+                    <div class="mid-side" style="width:430px;height:300px">
+                        <h2 style="height:30px">@item.TrademarkList.Name</h2>
+                        <div class="mid-top" style="height:75px">
+                            <h5>@item.ProductList.Name</h5>
+                        </div>
+                        <div class="mid-down" style="display:flex;justify-content:space-between">
+                            <div class="mid-down-left" style="width:190px">
+                                <p class="pt-0" style="height:13px">Product No : </p>
+                                <p class="pt-0" style="height:13px">Product Category : </p>
+                                <p class="pt-0" style="height:13px">Product OS : </p>
+                                <p class="pt-0" style="height:13px">Product Memory : </p>
+                                <p class="pt-0" style="height:13px">Product Bluetooth : </p>
+                                <p class="pt-0" style="height:13px">Product Processor : </p>
+                            </div>
+                            <div class="mid-down-right" style="width:240px">
+                                <p class="pt-0" style="height:13px">@item.ProductList.Id </p>
+                                <p class="pt-0" style="height:13px">@item.CategoryList.Name </p>
+                                <p class="pt-0" style="height:13px">@item.AccessoryList.OS </p>
+                                <p class="pt-0" style="height:13px">@item.AccessoryList.Memory </p>
+                                <p class="pt-0" style="height:13px">@item.AccessoryList.Bluetooth </p>
+                                <p class="pt-0" style="height:13px">@item.AccessoryList.Processor </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rigth-side" style="width:210px">
+                        <div class="rigth-top" style="margin-left:70px">
+                            <h2>@item.ProductList.Price<i class="bi bi-currency-euro fs-5"></i></h2>
+                        </div>
+                        <div class="rigth-mid" style="margin-left:70px">
+                            <a type="submit" class="btn btn-secondary p-0" style="width:150px;height:30px;border-radius:5px" asp-route-productId="@item.ProductList.Id" asp-controller="Home" asp-action="Create"><i class="bi bi-search"></i> Inspect</a>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        }
+        }
+       
+        @if(Model.ComputerView != null)
+        {
+             @foreach (var item in Model.ComputerView)
+        {
+            <form class="border p-3 mt-4" style="border-radius:15px;width:850px;height:300px;">
+                <div class="form-group" style="display:flex;justify-content:space-between">
+                    <div class="left-side mt-3" style="width:220px">
+                        <img src="@item.ProductList.Photo" style="width:150px;height:120px" />
+                    </div>
+                    <div class="mid-side" style="width:430px;height:300px">
+                        <h2 style="height:30px">@item.TrademarkList.Name</h2>
+                        <div class="mid-top" style="height:75px">
+                            <h5>@item.ProductList.Name</h5>
+                        </div>
+                        <div class="mid-down" style="display:flex;justify-content:space-between">
+                            <div class="mid-down-left" style="width:190px">
+                                <p class="pt-0" style="height:13px">Product No : </p>
+                                <p class="pt-0" style="height:13px">Product Category : </p>
+                                <p class="pt-0" style="height:13px">Product Processor : </p>
+                                <p class="pt-0" style="height:13px">Product Display Card : </p>
+                                <p class="pt-0" style="height:13px">Product Hard Disk : </p>
+                                <p class="pt-0" style="height:13px">Product OS : </p>
+                            </div>
+                            <div class="mid-down-right" style="width:240px">
+                                <p class="pt-0" style="height:13px">@item.ProductList.Id </p>
+                                <p class="pt-0" style="height:13px">@item.CategoryList.Name </p>
+                                <p class="pt-0" style="height:13px">@item.ComputerList.Processor </p>
+                                <p class="pt-0" style="height:13px">@item.ComputerList.Display_Card </p>
+                                <p class="pt-0" style="height:13px">@item.ComputerList.Hard_Disk </p>
+                                <p class="pt-0" style="height:13px">@item.ComputerList.OS </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rigth-side" style="width:210px">
+                        <div class="rigth-top" style="margin-left:70px">
+                            <h2>@item.ProductList.Price<i class="bi bi-currency-euro fs-5"></i></h2>
+                        </div>
+                        <div class="rigth-mid" style="margin-left:70px">
+                            <a type="submit" class="btn btn-secondary p-0" style="width:150px;height:30px;border-radius:5px"asp-route-productId="@item.ProductList.Id" asp-controller="Home" asp-action="Create"> <i class="bi bi-search"></i> Inspect</a>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        }
+        }
+        @if(Model.HousefoldView != null)
+        {
+            @foreach (var item in Model.HousefoldView)
+        {
+            <form class="border p-3 mt-4" style="border-radius:15px;width:850px;height:300px;">
+                <div class="form-group" style="display:flex;justify-content:space-between">
+                    <div class="left-side mt-3" style="width:220px">
+                        <img src="@item.ProductList.Photo" style="width:150px;height:120px" />
+                    </div>
+                    <div class="mid-side" style="width:430px;height:300px">
+                        <h2 style="height:30px">@item.TrademarkList.Name</h2>
+                        <div class="mid-top" style="height:75px">
+                            <h5>@item.ProductList.Name</h5>
+                        </div>
+                        <div class="mid-down" style="display:flex;justify-content:space-between">
+                            <div class="mid-down-left" style="width:190px">
+                                <p class="pt-0" style="height:13px">Product No : </p>
+                                <p class="pt-0" style="height:13px">Product Category : </p>
+                                <p class="pt-0" style="height:13px">Product Place : </p>
+                                <p class="pt-0" style="height:13px">Product Control Type : </p>
+                                <p class="pt-0" style="height:13px">Product Special Feature : </p>
+                                <p class="pt-0" style="height:13px">Product Guarentee : </p>
+                            </div>
+                            <div class="mid-down-right" style="width:240px">
+                                <p class="pt-0" style="height:13px">@item.ProductList.Id </p>
+                                <p class="pt-0" style="height:13px">@item.CategoryList.Name </p>
+                                <p class="pt-0" style="height:13px">@item.HousefoldList.Place </p>
+                                <p class="pt-0" style="height:13px">@item.HousefoldList.Control_Type </p>
+                                <p class="pt-0" style="height:13px">@item.HousefoldList.Special_Feature </p>
+                                <p class="pt-0" style="height:13px">@item.HousefoldList.Guarantee </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rigth-side" style="width:210px">
+                        <div class="rigth-top" style="margin-left:70px">
+                            <h2>@item.ProductList.Price<i class="bi bi-currency-euro fs-5"></i></h2>
+                        </div>
+                        <div class="rigth-mid" style="margin-left:70px">
+                            <a type="submit" class="btn btn-secondary p-0" style="width:150px;height:30px;border-radius:5px" asp-route-productId="@item.ProductList.Id" asp-controller="Home" asp-action="Create"> <i class="bi bi-search"></i> Inspect</a>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        }
+        }
+        @if(Model.PhoneView != null)
+        {
+            @foreach (var item in Model.PhoneView)
+        {
+            <form class="border p-3 mt-4" style="border-radius:15px;width:850px;height:300px;">
+                <div class="form-group" style="display:flex;justify-content:space-between">
+                    <div class="left-side mt-3" style="width:220px">
+                        <img src="@item.ProductList.Photo" style="width:150px;height:120px" />
+                    </div>
+                    <div class="mid-side" style="width:430px;height:300px">
+                        <h2 style="height:30px">@item.TrademarkList.Name</h2>
+                        <div class="mid-top" style="height:75px">
+                            <h5>@item.ProductList.Name</h5>
+                        </div>
+                        <div class="mid-down" style="display:flex;justify-content:space-between">
+                            <div class="mid-down-left" style="width:190px">
+                                <p class="pt-0" style="height:13px">Product No : </p>
+                                <p class="pt-0" style="height:13px">Product Category : </p>
+                                <p class="pt-0" style="height:13px">Product OS : </p>
+                                <p class="pt-0" style="height:13px">Product Processor : </p>
+                                <p class="pt-0" style="height:13px">Product Memory: </p>
+                                <p class="pt-0" style="height:13px">Product Camera : </p>
+                            </div>
+                            <div class="mid-down-right" style="width:240px">
+                                <p class="pt-0" style="height:13px">@item.ProductList.Id </p>
+                                <p class="pt-0" style="height:13px">@item.CategoryList.Name </p>
+                                <p class="pt-0" style="height:13px">@item.PhoneList.OS </p>
+                                <p class="pt-0" style="height:13px">@item.PhoneList.Processor </p>
+                                <p class="pt-0" style="height:13px">@item.PhoneList.Memory </p>
+                                <p class="pt-0" style="height:13px">@item.PhoneList.Camera </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rigth-side" style="width:210px">
+                        <div class="rigth-top" style="margin-left:70px">
+                            <h2>@item.ProductList.Price<i class="bi bi-currency-euro fs-5"></i></h2>
+                        </div>
+                        <div class="rigth-mid" style="margin-left:70px">
+                            <a type="submit" class="btn btn-secondary p-0" style="width:150px;height:30px;border-radius:5px" asp-route-productId="@item.ProductList.Id" asp-controller="Home" asp-action="Create"> <i class="bi bi-search"></i> Inspect</a>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        }
+        }
+        @if(Model.TvView != null)
+        {
+            @foreach (var item in Model.TvView)
+        {
+            <form class="border p-3 mt-4" style="border-radius:15px;width:850px;height:300px;">
+                <div class="form-group" style="display:flex;justify-content:space-between">
+                    <div class="left-side mt-3" style="width:220px">
+                        <img src="@item.ProductList.Photo" style="width:150px;height:120px" />
+                    </div>
+                    <div class="mid-side" style="width:430px;height:300px">
+                        <h2 style="height:30px">@item.TrademarkList.Name</h2>
+                        <div class="mid-top" style="height:75px">
+                            <h5>@item.ProductList.Name</h5>
+                        </div>
+                        <div class="mid-down" style="display:flex;justify-content:space-between">
+                            <div class="mid-down-left" style="width:190px">
+                                <p class="pt-0" style="height:13px">Product No : </p>
+                                <p class="pt-0" style="height:13px">Product Category : </p>
+                                <p class="pt-0" style="height:13px">Product Screen Type : </p>
+                                <p class="pt-0" style="height:13px">Product Screen Size : </p>
+                                <p class="pt-0" style="height:13px">Procut Image Quality : </p>
+                                <p class="pt-0" style="height:13px">Product OS : </p>
+                            </div>
+                            <div class="mid-down-right" style="width:240px">
+                                <p class="pt-0" style="height:13px">@item.ProductList.Id </p>
+                                <p class="pt-0" style="height:13px">@item.CategoryList.Name </p>
+                                <p class="pt-0" style="height:13px">@item.TVList.Screen_Type </p>
+                                <p class="pt-0" style="height:13px">@item.TVList.Screen_Size </p>
+                                <p class="pt-0" style="height:13px">@item.TVList.Image_Quality </p>
+                                <p class="pt-0" style="height:13px">@item.TVList.OS</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rigth-side" style="width:210px">
+                        <div class="rigth-top" style="margin-left:70px">
+                            <h2>@item.ProductList.Price<i class="bi bi-currency-euro fs-5"></i></h2>
+                        </div>
+                        <div class="rigth-mid" style="margin-left:70px">
+                            <a type="submit" class="btn btn-secondary p-0" style="width:150px;height:30px;border-radius:5px" asp-route-productId="@item.ProductList.Id" asp-controller="Home" asp-action="Create"> <i class="bi bi-search"></i> Inspect</a>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        }
+        }
+        
+    </div>
+</div>
+<script>
+
+</script>
+

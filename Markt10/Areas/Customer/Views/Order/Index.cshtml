@@ -1,0 +1,61 @@
+﻿@using Markt10.ViewModel.OrderViewModel
+@model OrderView
+@{
+    ViewData["Title"] = "Index";
+}
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr style="text-align:center">
+            <td>
+                Order Id
+            </td>
+            <td>
+                Product Name
+            </td>
+            <td>
+                Price
+            </td>
+            <td>Piece</td>
+            <td>Order Date</td>
+            <td>Delivery Date</td>
+            <td>
+                Status
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.OrderList)
+        {
+            <form method="post">
+            <tr style="text-align:center">
+                <td>
+                        @item.OrderList.Id
+                </td>
+                <td style="width:450px">
+                        @item.ProductList.Name
+                </td>
+                <td>
+                        @item.ProductList.Price
+                </td>
+                <td>
+                        @item.OrderList.Count
+                </td>
+                <td>
+                        @item.OrderList.OrderDate
+                </td>
+                <td> @item.OrderList.ShippingDate
+                </td>
+                <td>
+                        @item.OrderList.Status
+                    <button class="btn-danger" style="border-radius:5px" type="submit"asp-route-id="@item.OrderList.Id" asp-controller="Order" asp-action="Index">İptal Et </button>
+                </td>
+
+
+            </tr>
+            </form>
+
+        }
+
+
+    </tbody>
+</table>

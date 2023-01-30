@@ -1,0 +1,34 @@
+﻿@model Markt10.Areas.Customer.Controllers.RegisterController
+@{
+    ViewData["Title"] = "Index";
+}
+<h1 class="Markt10" style="color:orange; text-align:center ;padding-top:4%">Markt10</h1>
+
+
+<div class="border p-3 mt-4 bg-light" style="width:400px; height:450px;border-radius:15px;margin-left:32%">
+    @using (Html.BeginForm())
+    {
+        <form method="post">
+            <div class="row pb-2">
+                <h2 class="text-dark" style="text-align:center">Register</h2>
+            </div>
+            <div class="form-group">
+                <label class="form-label" asp-for="UserModel.User_Name">Name</label>
+                <input type="text" asp-for="UserModel.User_Name" class="form-control" placeholder="Your Name">
+                <span asp-validation-for="UserModel.User_Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="form-label" asp-for="UserModel.User_Email">Mail</label>
+                <input type="email" asp-for="UserModel.User_Email" class="form-control" placeholder="email@example.com">
+                <span asp-validation-for="UserModel.User_Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="form-label" asp-for="UserModel.User_Password">Password</label>
+                <input type="password" asp-for="UserModel.User_Password" class="form-control" placeholder="Your Password">
+                <span asp-validation-for="UserModel.User_Password" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-secondary" style="width:360px" >Register</button>
+        </form>
+    }
+</div>
+
